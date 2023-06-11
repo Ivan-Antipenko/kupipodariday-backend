@@ -1,3 +1,4 @@
+import { isBoolean, isNumber } from 'class-validator';
 import { User } from 'src/users/entities/user.entity';
 import { Wish } from 'src/wishes/entities/wish.entity';
 import {
@@ -30,10 +31,12 @@ export class Offer {
     type: 'numeric',
     scale: 2,
   })
+  @isNumber()
   amount: number;
 
   @Column({
     default: false,
   })
+  @isBoolean()
   hidden: boolean;
 }

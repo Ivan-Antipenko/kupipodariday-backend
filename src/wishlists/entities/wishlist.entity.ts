@@ -1,4 +1,4 @@
-import { Length } from 'class-validator';
+import { Length, isDate, isString } from 'class-validator';
 import { User } from 'src/users/entities/user.entity';
 import { Wish } from 'src/wishes/entities/wish.entity';
 import {
@@ -18,18 +18,22 @@ export class WishList {
   id: number;
 
   @CreateDateColumn()
+  @isDate()
   createdAt: Date;
 
   @UpdateDateColumn()
+  @isDate()
   updatedAt: Date;
 
   @Column({
     type: 'varchar',
   })
   @Length(1, 250)
+  @isString()
   name: string;
 
   @Column()
+  @isString()
   image: string;
 
   @ManyToOne(() => User, (user) => user.wishlists)
